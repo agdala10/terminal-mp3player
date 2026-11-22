@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Terminal Mp3 Player — reproductor de música multicolor para terminal Linux con ecualizador real, playlists, YouTube Music y descarga integrada.">
+  <meta name="theme-color" content="#0b0f1a">
+  <title>Terminal Mp3 Player — Power by Agdala 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <header class="topbar">
+    <a class="brand" href="#inicio">
+      <span class="brand-mark">▶</span>
+      <span>Terminal <b>Mp3</b> Player</span>
+    </a>
+    <nav class="nav" aria-label="Navegación principal">
+      <a href="#caracteristicas">Características</a>
+      <a href="#instalacion">Instalación</a>
+      <a href="#uso">Uso</a>
+      <a href="#galeria">Galería</a>
+      <a href="#demo">Demo</a>
+      <a class="nav-cta" href="#instalacion">Instalar</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+      <div class="hero-glow"></div>
+      <div class="hero-inner">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">LINUX · TERMINAL · MULTICOLOR</p>
+          <h1>Tu música,<br><span class="gradient-text">toda en la terminal.</span></h1>
+          <p class="lead">
+            Reproductor estilo clásico con <b>LCD verde</b>, <b>ecualizador real</b> de 10 bandas,
+            playlists guardadas, URLs de YouTube Music y descarga integrada. Sin ventanas gráficas.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#demo">▶ Ver demo</a>
+            <a class="btn btn-ghost" href="#instalacion">Instalar en 3 pasos</a>
+          </div>
+          <div class="hero-badges">
+            <span>🖱️ Ratón incluido</span>
+            <span>🎛️ EQ en tiempo real</span>
+            <span>🌐 YouTube Music</span>
+            <span>💾 Descarga local</span>
+          </div>
+        </div>
+
+        <div class="hero-player reveal" aria-label="Vista previa del reproductor">
+          <div class="window win-main">
+            <div class="title-bar">╣ TERMINAL MP3 PLAYER ╠ <span>[_][X]</span></div>
+            <div class="lcd">
+              <div class="lcd-time">0:08</div>
+              <div class="lcd-info">1. Adrenalina - Maldita<br>48 kHz · 16 bit · stereo</div>
+              <div class="scope" id="scopePreview"></div>
+            </div>
+            <div class="vol-bar"><i></i></div>
+            <div class="controls">[&lt;|] [&gt;] [||] [] [&gt;|] [SHUFFLE] [EQ] [PL] [CRED]</div>
+          </div>
+          <div class="window win-eq">
+            <div class="title-bar green">╣ TERMINAL MP3 PLAYER - EQ ╠ <span>[_][X]</span></div>
+            <div class="faders" id="faderPreview"></div>
+          </div>
+          <div class="window win-list">
+            <div class="title-bar red">╣ TERMINAL MP3 PLAYER - PLAYLIST ╠</div>
+            <ul>
+              <li><span>1. Adrenalina - Maldita</span><em>3:38</em></li>
+              <li><span>2. Héroes del Silencio</span><em>4:32</em></li>
+              <li class="active"><span>3. Vilma Palma - Bye Bye</span><em>4:07</em></li>
+              <li><span>4. YouTube Music ↓</span><em>--:--</em></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="audio-dock reveal">
+        <button id="audioToggle" class="audio-toggle" aria-label="Reproducir o pausar música">▶</button>
+        <div class="audio-meta">
+          <strong>Adrenalina — Maldita</strong>
+          <span>Banda sonora de la demo · Genera las partículas</span>
+        </div>
+        <div class="audio-wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <audio id="themeAudio" src="assets/media/adrenalina.mp3" loop preload="auto"></audio>
+      </div>
+    </section>
+
+    <!-- CARACTERÍSTICAS -->
+    <section class="section" id="caracteristicas">
+      <div class="section-head reveal">
+        <p class="eyebrow">TODO EN UNA SOLA VENTANA</p>
+        <h2>Hecho para nostálgicos,<br>potenciado para hoy.</h2>
+      </div>
+      <div class="feature-grid">
+        <article class="card reveal"><div class="card-icon">🎨</div><h3>Multicolor real</h3><p>Tres ventanas con identidad propia: reproductor magenta, ecualizador verde y playlist roja.</p></article>
+        <article class="card reveal"><div class="card-icon">🎛️</div><h3>Ecualizador instantáneo</h3><p>10 bandas con filtro FIR en tiempo real. Mueve un fader y el sonido cambia al instante, sin cortes.</p></article>
+        <article class="card reveal"><div class="card-icon">🌐</div><h3>YouTube Music</h3><p>Pega un link, consulta el título y escucha la mejor calidad disponible. Sin salir de la terminal.</p></article>
+        <article class="card reveal"><div class="card-icon">💾</div><h3>Descarga con un clic</h3><p>Icono ↓ en cada pista URL. Guarda el audio en tu carpeta de música local y lo vuelve permanente.</p></article>
+        <article class="card reveal"><div class="card-icon">📁</div><h3>Varias playlists</h3><p>Crea, guarda y carga todas las listas que quieras. Se almacenan como JSON en tu perfil.</p></article>
+        <article class="card reveal"><div class="card-icon">🖱️</div><h3>Ratón + teclado</h3><p>Clics, arrastres, atajos, minimizar ventanas y auto‑ajuste del tamaño de la terminal.</p></article>
+      </div>
+    </section>
+
+    <!-- INSTALACIÓN -->
+    <section class="section alt" id="instalacion">
+      <div class="section-head reveal">
+        <p class="eyebrow">PASO A PASO</p>
+        <h2>Instálalo en menos de un minuto.</h2>
+        <p>El proyecto ya trae <code>yt-dlp</code>, <code>ffmpeg</code> y <code>ffprobe</code> incluidos.</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><span>01</span><div><h3>Clona el repositorio</h3><pre><code>git clone https://github.com/agdala10/terminal-mp3player.git
+cd terminal-mp3player</code></pre></div></div>
+        <div class="step reveal"><span>02</span><div><h3>Instala para todos los usuarios</h3><pre><code>sudo bash install-system.sh</code></pre></div></div>
+        <div class="step reveal"><span>03</span><div><h3>Ejecuta</h3><pre><code>terminal-mp3player</code></pre><p>Alias: <code>tmp3</code>, <code>winamp</code>, <code>term-winamp</code>.</p></div></div>
+        <div class="step reveal"><span>04</span><div><h3>Pon tu música</h3><pre><code>mkdir -p ~/Music/terminal-mp3player
+cp ~/Descargas/*.mp3 ~/Music/terminal-mp3player/</code></pre></div></div>
+      </div>
+      <p class="note reveal">¿Prefieres no instalar globalmente? Usa <code>python3 -m venv .venv &amp;&amp; .venv/bin/pip install -r requirements.txt &amp;&amp; ./run.sh</code>.</p>
+    </section>
+
+    <!-- USO -->
+    <section class="section" id="uso">
+      <div class="section-head reveal">
+        <p class="eyebrow">CÓMO SE USA</p>
+        <h2>Playlist, YouTube y descarga.</h2>
+      </div>
+      <div class="use-grid">
+        <article class="use-card reveal">
+          <span class="use-num">01</span>
+          <h3>Agregar un link de YouTube</h3>
+          <p>Pulsa <kbd>u</kbd> o el botón <code>[URL]</code>, pega la dirección y da <kbd>Enter</kbd>. El título aparece automáticamente en la lista.</p>
+        </article>
+        <article class="use-card reveal">
+          <span class="use-num">02</span>
+          <h3>Escuchar sin descargar</h3>
+          <p>Da <kbd>Enter</kbd> sobre la pista URL. Se descarga a caché y suena con la mejor calidad; al terminar pasa a la siguiente.</p>
+        </article>
+        <article class="use-card reveal">
+          <span class="use-num">03</span>
+          <h3>Guardarla en tu carpeta</h3>
+          <p>Haz clic en el icono <b>↓</b> (o <kbd>d</kbd>). El audio se guarda en <code>~/Music/terminal-mp3player/</code> y se convierte en pista local.</p>
+        </article>
+        <article class="use-card reveal">
+          <span class="use-num">04</span>
+          <h3>Crear listas separadas</h3>
+          <p>Pulsa <kbd>t</kbd>, escribe un nombre y <kbd>Enter</kbd>. Cambia entre listas cuando quieras; <kbd>Supr</kbd> las borra.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section class="section alt" id="galeria">
+      <div class="section-head reveal">
+        <p class="eyebrow">GALERÍA</p>
+        <h2>Así se ve en acción.</h2>
+      </div>
+      <div class="gallery" id="gallery"></div>
+    </section>
+
+    <!-- DEMO -->
+    <section class="section" id="demo">
+      <div class="section-head reveal">
+        <p class="eyebrow">VIDEO DEMO</p>
+        <h2>Míralo funcionando.</h2>
+      </div>
+      <div class="video-wrap reveal">
+        <video controls preload="metadata" poster="assets/img/1.png">
+          <source src="assets/media/demo.mp4" type="video/mp4">
+          Tu navegador no soporta video HTML5.
+        </video>
+      </div>
+    </section>
+
+    <!-- CRÉDITOS -->
+    <section class="credits" id="creditos">
+      <div class="credits-inner reveal">
+        <p class="eyebrow">CRÉDITOS Y LICENCIA</p>
+        <h2><span class="gradient-text">Power by Agdala 2026</span></h2>
+        <p>Gracias por usar <b>Terminal Mp3 Player</b>. Desarrollado con cariño para quienes aman la terminal y la música.</p>
+        <a class="mail" href="mailto:agdala.sv@gmail.com">✉ agdala.sv@gmail.com</a>
+        <div class="license">
+          <span>Licencia de uso <b>GRATUITA</b></span>
+          <span class="sep">·</span>
+          <span><b>Prohibida su venta</b></span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Terminal Mp3 Player · Power by Agdala</p>
+    <p>HTML5 · CSS4 · JavaScript · Hecho para Linux</p>
+  </footer>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lb-close" id="lbClose" aria-label="Cerrar">×</button>
+    <img id="lbImg" src="" alt="Ampliación de captura">
+    <p id="lbCaption"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

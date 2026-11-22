@@ -1,0 +1,11 @@
+# Entorno virtual y cache de Python
+.venv/
+__pycache__/
+*.py[cod]
+
+# Logs y temporales
+*.log
+.DS_Store
+Thumbs.db
+
+# Caché de audio generada en /tmp (no va al repo)
